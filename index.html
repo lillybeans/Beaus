@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Using LCBO API via jQuery</title>
+    <title>Beau's All Natural Brewery</title>
     
+    <link rel="stylesheet" type="text/css" href="external/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="external/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="external/css/animate.css"> 
     <link rel="stylesheet" type="text/css" href="css/site.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-    <script type="text/javascript" src="js/LCBO.js"></script>
+      
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+      
       
   </head>
   <body>
-    <h1 class='product_title'></h1>
-    <div id='product_details'></div>
+      <header>
+          <img class="logo" src=img/beaus-beige-logo.svg>
+          <div class="heading">
+              <h1>Beau's</h1>
+              <h2>Brewing tasty, all-natural beer.</h2>
+          </div>
+      
+      </header>
+      <section class="seasonal-beverages">
+          <div class="row">
+              <h1>Seasonal Beverages</h1>
+              <ul class="seasonal-list" class="clearfix">
+              </ul>
+          </div>
+      </section>
+      
+      <section id="product-details">
+      </section>
+      
+    
+      <script type="text/javascript" src="external/js/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="js/main.js"></script>
+      <script type="text/javascript" src="js/LCBO.js"></script>
+      
   </body>
 </html>

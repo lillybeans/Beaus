@@ -1,3 +1,220 @@
-h1.product_title{
-    text-decoration:underline;
+/*
+* COLORS:
+* body font: #2f2a2b
+* light brown: #c5a077
+* dark brown:#522c1c
+* beige: #f5dfbf
+* torquoise: #a6babc
+*/
+
+html, body{
+    color: #2f2a2b; /* font color */
+    font-family:'Open Sans','Arial',sans-serif; /* if not Open Sans, use Arial */
+    font-size:16px;
+    font-weight:300px;
+    background-color:#f4f4f4;
 }
+
+/*------------------------------------------*/
+/* Reusable */
+/*------------------------------------------*/
+
+section{
+    background-color:#f4f4f4;
+    margin: 30px auto;
+    border-color:red;
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.row {
+    max-width: 1140px; /* only one with absolute values */
+    margin: 0 auto;
+    padding: 0px 5%; /* tb:0 lr:5% */
+}
+
+h1{
+    font-family:'Abril Fatface',cursive;
+    font-weight:400;
+    font-size:300%;
+    padding-left: 10px;
+}
+
+h2{
+    font-family:'Abril Fatface',cursive;
+    font-size:200%;
+    padding-left:10px;
+}
+
+/*clear float after element */
+.clearfix{zoom:1}
+
+.clearfix:after{
+    content:'.';
+    clear:both;
+    display:block;
+    height:0;
+}
+
+/*------------------------------------------*/
+/* Header - Landing Page */
+/*------------------------------------------*/
+header{
+    height:100vh;
+    background-color:#f5dfbf;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(0, 0, 0, 0.6)),to(rgba(0, 0, 0, 0.6))), url(../img/bg.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)), url(../img/bg.jpg);
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+.logo{
+    width:15%;
+    fill: #2f2a2b;
+    position:absolute;
+    top:5%;
+    right:10%;
+    auto;
+}
+
+.heading{
+    position: absolute; /* only way to vertically and horizontally center*/
+    width:1140px;
+    bottom: 40%;
+    right: 10%;
+    text-align:right;
+    transition:
+}
+
+.heading h1{
+    color:#ede3d5;
+    font-size:600%;
+    margin-bottom:100px;
+    animation-duration: 2s;
+    height:30px; /* so animation won't be too dramatic */
+}
+
+.heading h2{
+    color: #ede3d5;
+    margin:0;
+    font-size:200%;
+    font-weight:400;
+    animation-duration: 2s;
+}
+
+/*------------------------------------------*/
+/* Section 1 - Seasonal Beverages */
+/*------------------------------------------*/
+.seasonal-beverages{
+    width:100%
+}
+
+.seasonal-list{ /* ul */
+    list-style:none;
+    width:100%;
+    padding:0;
+}
+
+.seasonal-list li{
+    background-color:#fff;
+    display:inline-block;
+    width:23%;
+    height:400px;
+    vertical-align:top;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    padding:10px;
+    margin:10px;
+    margin-bottom:10px;
+    text-align:center;
+    box-shadow: 0 2px 2px #cbcbcb;
+    transform:scale(1.0);
+    transition: transform 0.3s;
+}
+
+.seasonal-list li:hover{
+    transform:scale(1.05);
+    transition: transform 0.3s;
+    color: #c5a077;
+}
+
+.product-name{ /*product title*/
+    height:0px;
+    font-weight:700;
+    font-size:100%;
+}
+
+.product-img{
+    height:230px;
+}
+
+.thumb{
+    height:100%;
+}
+
+.not-found{
+    height:100%;
+    box-sizing:border-box;
+}
+
+.price{
+    font-weight:400px;
+    font-size:130%;
+    margin:0;
+}
+
+/*------------------------------------------*/
+/* Section 2 - Product Details */
+/*------------------------------------------*/
+
+#product-details .row{
+    text-align:center;
+    background-color:#ffffff;
+    width:68%;
+}
+
+#product-details h1{
+    font-size:200%;
+}
+
+#product-details h2{
+    font-size: 150%;
+    margin-bottom:20px;
+}
+
+#product-details .product-img{
+    height:auto;
+    display:inline-block;
+    float:left;
+}
+
+#product-details .product-img img{
+    height:300px;
+    width:auto;
+    margin-left:50%;
+}
+
+
+
+#product-details .row .info{
+    margin-top:20px;
+    line-height:30px;
+    position:relative; /* needed for centering*/
+    width:50%;
+    text-align:left;
+    display:inline-block;
+}
+
+.info tr td{
+    vertical-align: top;
+}
+
+.info tr td:first-child{
+    font-weight:700;
+}
+
+
+
+/*------------------------------------------*/
+/* Animations using Animate.css */
+/*------------------------------------------*/
