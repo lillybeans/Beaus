@@ -10,10 +10,10 @@ $(document).ready(function(){
             
               //title and image
               //check if thumbnail exists, if not, replace with default image
-              var product_image="<div class='product-img clearfix'><img src="+product.image_url+"></div>";
+              var product_image="<img src="+product.image_url+">";
 
               if (product.image_url == null){
-                  product_image="<div class='product-img clearfix'><img class='not-found' src=img/beer-not-found.png></div>";
+                  product_image="<img class='not-found' src=img/beer-not-found.png>";
               }
             
               var style=product.style;
@@ -34,19 +34,21 @@ $(document).ready(function(){
               //fill in the information about this product
               $('#product-details').html(
                   "<div class='row'>"+
-                      product_image+
-                      "<h1 class='product-name .clearfix'>"+product.name+"</h1>"+
-                      "<h2 class='volume .clearfix'>"+product.volume_in_milliliters+" mL</h2>"+
-                      "<table class='info clearfix'>"+
+                    "<div class='col span-1-of-2 product-img'>"+product_image+"</div>"+
+                    "<div class='col span-1-of-2'>"+
+                      "<h1 class='product-name'>"+product.name+"</h1>"+
+                      "<h2 class='volume divider'>"+product.volume_in_milliliters+" mL</h2>"+
+                      "<table class='info'>"+
                           "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
-                          "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
-                          "<tr><td>Style: </td><td>"+style+"</td></tr>"+
-                          "<tr><td>Origin: </td><td>"+product.origin+"</td></tr>"+
-                          "<tr><td>Producer: </td><td>"+product.producer_name+"</td></tr>"+
-                          "<tr><td>Released: </td><td>"+released_on+"</td></tr>"+
-                          "<tr><td>Suggestion: </td><td>"+serving_suggestion+"</td></tr>"+
+                          "<tr><td>Category </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
+                          "<tr><td>Style </td><td>"+style+"</td></tr>"+
+                          "<tr><td>Origin </td><td>"+product.origin+"</td></tr>"+
+                          "<tr><td>Producer </td><td>"+product.producer_name+"</td></tr>"+
+                          "<tr><td>Released </td><td>"+released_on+"</td></tr>"+
+                          "<tr class><td>Suggestion </td><td>"+serving_suggestion+"</td></tr>"+
                       "</table>"+
-                    "<br><a class='btn btn-full' href='#'>Find stores</a>"+
+                    "<a class='btn btn-full' href='#'>Find stores</a>"+
+                    "</div>"+
                   "</div>"
 
               );
