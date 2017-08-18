@@ -16,6 +16,11 @@ $(document).ready(function(){
                   product_image="<div class='product-img clearfix'><img class='not-found' src=img/beer-not-found.png></div>";
               }
             
+              var style=product.style;
+              if(product.style==null){
+                  style="Unknown";
+              }
+            
               var released_on = product.released_on;
               if(product.released_on == null){
                   released_on="Unknown";
@@ -35,6 +40,7 @@ $(document).ready(function(){
                   "<table class='info clearfix'>"+
                   "<tr><td>Price:</td><td> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
                   "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
+                  "<tr><td>Style: </td><td>"+style+"</td></tr>"+
                   "<tr><td>Origin: </td><td>"+product.origin+"</td></tr>"+
                   "<tr><td>Producer: </td><td>"+product.producer_name+"</td></tr>"+
                   "<tr><td>Released: </td><td>"+released_on+"</td></tr>"+
