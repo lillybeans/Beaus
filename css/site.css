@@ -209,6 +209,10 @@ header{
     vertical-align: top;
 }
 
+.info tr td .price{
+    font-size:300%;
+}
+
 .info tr td:first-child{
     font-weight:700;
 }

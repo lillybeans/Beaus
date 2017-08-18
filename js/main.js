@@ -38,7 +38,7 @@ $(document).ready(function(){
                   "<h2>"+product.volume_in_milliliters+" mL</h2>"+
                   product_image+
                   "<table class='info clearfix'>"+
-                  "<tr><td>Price:</td><td> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
+                  "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
                   "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
                   "<tr><td>Style: </td><td>"+style+"</td></tr>"+
                   "<tr><td>Origin: </td><td>"+product.origin+"</td></tr>"+
