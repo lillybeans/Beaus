@@ -34,9 +34,9 @@ $(document).ready(function(){
               //fill in the information about this product
               $('#product-details').html(
                   "<div class='row'>"+
-                  "<h1>"+product.name+"</h1>"+
-                  "<h2>"+product.volume_in_milliliters+" mL</h2>"+
                   product_image+
+                  "<h1 class='product-name .clearfix'>"+product.name+"</h1>"+
+                  "<h2 class='volume .clearfix'>"+product.volume_in_milliliters+" mL</h2>"+
                   "<table class='info clearfix'>"+
                   "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
                   "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+

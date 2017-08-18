@@ -31,10 +31,10 @@ var LCBO = new function() {
           });
         }
       };
-
+     
       $(function() {
         
-        //On load: display all seasonal products
+        //On load: display section seasonal products
         var query="&where_not=is_dead&order=released_on.desc";
         
           LCBO.BeausSeasonalProducts(query,function(products){
@@ -50,9 +50,8 @@ var LCBO = new function() {
                   //fill in the information about this product
                   $('.seasonal-list').append(
                       "<li id="+product.id+">"
-                        +"<p class='product-name''>"+product.name+"</p>"+
-                        "<br>"+
-                        product_img+
+                        +product_img+
+                      "<p class='product-name''>"+product.name+"</p>"+
                       "<p class='volume'>"+product.volume_in_milliliters+" mL</p>"+
                       "<p class='price'>$"+parseFloat(product.price_in_cents/100).toFixed(2)+"</p>"+
                       "</li>"
