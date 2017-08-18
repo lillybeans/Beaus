@@ -46,6 +46,28 @@ h2{
     padding-left:10px;
 }
 
+.btn:link, 
+.btn:visited{ /* so that both link and visited look the same */
+    display: inline-block;
+    padding:10px 30px; /* t/b:10, l/r:30 */
+    font-weight: 300;
+    text-decoration: none; /* get rid of underline */
+    border-radius: 200px;
+    -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
+    transition: background-color 0.2s, border 0.2s, color 0.2s; 
+    background-color: #522c1c;
+    border: 1px solid #522c1c; /* so same size as ghost */
+    color: #fff; /* font color */
+    margin-right: 15px; /* to space out buttons a lil */
+    margin:20px 0;
+}
+
+.btn:hover,
+.btn:active{
+    background-color: #c5a077; /* darker */
+    border: 1px solid #c5a077; /* border must be darker too */
+}
+
 /*clear float after element */
 .clearfix{zoom:1}
 
@@ -179,6 +201,7 @@ header{
     text-align:center;
     background-color:#ffffff;
     width:68%;
+    box-shadow: 0 2px 2px #cbcbcb;
 }
 
 #product-details .product-img{
@@ -255,6 +278,9 @@ header{
     width:40%;
 }
 
+#product-details .btn{
+    width:20%;
+}
 
 
 /*------------------------------------------*/

@@ -34,17 +34,19 @@ $(document).ready(function(){
               //fill in the information about this product
               $('#product-details').html(
                   "<div class='row'>"+
-                  product_image+
-                  "<h1 class='product-name .clearfix'>"+product.name+"</h1>"+
-                  "<h2 class='volume .clearfix'>"+product.volume_in_milliliters+" mL</h2>"+
-                  "<table class='info clearfix'>"+
-                  "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
-                  "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
-                  "<tr><td>Style: </td><td>"+style+"</td></tr>"+
-                  "<tr><td>Origin: </td><td>"+product.origin+"</td></tr>"+
-                  "<tr><td>Producer: </td><td>"+product.producer_name+"</td></tr>"+
-                  "<tr><td>Released: </td><td>"+released_on+"</td></tr>"+
-                  "<tr><td>Suggestion: </td><td>"+serving_suggestion+"</td></tr></table>"+
+                      product_image+
+                      "<h1 class='product-name .clearfix'>"+product.name+"</h1>"+
+                      "<h2 class='volume .clearfix'>"+product.volume_in_milliliters+" mL</h2>"+
+                      "<table class='info clearfix'>"+
+                          "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td></tr>"+
+                          "<tr><td>Category: </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
+                          "<tr><td>Style: </td><td>"+style+"</td></tr>"+
+                          "<tr><td>Origin: </td><td>"+product.origin+"</td></tr>"+
+                          "<tr><td>Producer: </td><td>"+product.producer_name+"</td></tr>"+
+                          "<tr><td>Released: </td><td>"+released_on+"</td></tr>"+
+                          "<tr><td>Suggestion: </td><td>"+serving_suggestion+"</td></tr>"+
+                      "</table>"+
+                    "<br><a class='btn btn-full' href='#'>Find stores</a>"+
                   "</div>"
 
               );
