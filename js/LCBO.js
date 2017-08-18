@@ -16,6 +16,9 @@ var LCBO = new function() {
           get('/stores/' + id, callback);
         };
     
+
+    
+    
         function get(url, callback) {
           $.ajax({
             url: 'http://lcboapi.com' + url,
@@ -31,6 +34,35 @@ var LCBO = new function() {
           });
         }
       };
+
+var Product=new function() {
+    
+        this.stores=[];
+    
+        this.findStores = function(product_id, callback) {
+          get('/inventories?product_id=' + product_id, callback);
+        };
+    
+        this.getStore = function(id, callback) {
+          get('/stores/' + id, callback);
+        };
+    
+        function get(url, callback) {
+          $.ajax({
+            url: 'http://lcboapi.com' + url,
+            dataType: 'jsonp',
+            success: function(data) {
+              if (200 == data.status) {
+                callback(data.result);
+                  console.log(data.result);
+              } else {
+                alert('There was an error [' + data.status + ']: ' + data.message);
+              }
+            }
+          });
+        }
+    
+};
      
       $(function() {
         
@@ -39,7 +71,7 @@ var LCBO = new function() {
         
           LCBO.BeausSeasonalProducts(query,function(products){
               
-              $.each(products,function(i,product){
+              $.each(products,function(i,product){ //'i' is mandatory! 
                   
                   //check if thumbnail exists, if not, replace with default image
                   var product_img="<div class='product-img'><img class='thumb' src="+product.image_thumb_url+"></div>";
