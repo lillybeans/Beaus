@@ -243,6 +243,8 @@ section#product-details{
     display:flex;
     border:0.5px solid #c5a077;
     padding:0px;
+    background-color: #fff;
+
 }
 
 #product-details .product-name{
