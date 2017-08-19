@@ -38,6 +38,8 @@ $(document).ready(function(){
     
     //Generate Product Details
     $('.seasonal-list').on('click', 'li', function(){
+        
+        $('#product-details').show(); //expand to show section
 
         product_id = $(this).attr("id"); //grab id from 'li'
         
@@ -106,7 +108,7 @@ $(document).ready(function(){
         
         //smooth scroll
         $('html, body').animate({
-            scrollTop: $("#product-details").offset().top
+            scrollTop: $("#product-details").offset().top-60
         }, 1000);
     });
     
@@ -117,6 +119,15 @@ $(document).ready(function(){
         
         $('#product-details').find('a').html("Searching...");
         var current_product = new Product(product_id);
+        
+        $('#stores-list').show(); //show section to display our results
+        
+        //get product name of currently showcased product
+        var product_name=$('#product-details .product-name').html();
+        
+        $('#stores-list-heading').html(
+            "<h1>Where to buy <span class='product-name'>"+product_name+"</span></h1>"
+        );
         
         current_product.findStores();
   
@@ -139,7 +150,7 @@ $(document).ready(function(){
 /** Pagination **/
 
 function paginateStores(stores){ //triggered after async call "getStore" is complete
-
+    
     $('#product-details').find('a').html("Find stores"); //change button text back
     
     //pagination

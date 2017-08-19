@@ -231,17 +231,18 @@ p.product-name{ /*product title*/
 /* Section 2 - Product Details */
 /*------------------------------------------*/
 
-
+section#product-details{
+    display:none;
+}
 
 #product-details .row{
     text-align:center;
-    background-color:#ffffff;
-    width:70%;
-    -webkit-box-shadow: 0 2px 2px #cbcbcb;
-    box-shadow: 0 2px 2px #cbcbcb;
-    display:-webkit-box;
+    width:80%;
     display:-ms-flexbox;
+    display:-webkit-box;
     display:flex;
+    border:0.5px solid #c5a077;
+    padding:0px;
 }
 
 #product-details .product-name{
@@ -249,10 +250,21 @@ p.product-name{ /*product title*/
     font-size:200%;
 }
 
-#product-details h2{
+#product-details .volume{
     text-align:left;
     font-size:150%;
     font-weight:700;
+    color: #c5a077;
+}
+
+#product-details .col{
+    margin:30px;
+}
+
+#product-details .col:first-child{
+    background-color:#fff;
+    width:50%;
+    border-right:1px #c5a077;
 }
 
 #product-details .product-img{
@@ -312,6 +324,14 @@ td.stock-status{
 /*------------------------------------------*/
 /* Section 3 - Stores List & Pagination */
 /*------------------------------------------*/
+
+section#stores-list{
+    display:none;
+}
+
+#stores-list-heading .product-name{
+    color:#c5a077;
+}
 
 #stores-list .row{
     text-align:center;
