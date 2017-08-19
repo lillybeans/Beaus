@@ -14,8 +14,6 @@ function get(url, callback) {
   });
 }
 
-
-
 var LCBO = function() {
     
         this.BeausAllProducts=function(callback){

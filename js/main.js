@@ -1,15 +1,50 @@
+var lcbo = new LCBO(); //initialize global lcbo instance
+
+var product_id; //id of current product in product details
+
 /*** Load upon render ***/
 
 $(document).ready(function(){
     
-    var product_id; //will store the id of the active product the user clicked on
+    showHeadingAnimations();
+    showSeasonalProducts();
+        
+    //If user clicks a product in the Seasonal Products list, generate product details
+    $('.seasonal-list').on('click', 'li', function(){
+        showProductDetails($(this));
+    });
     
-    var my_lcbo = new LCBO();
+    //If 'find stores' clicked, find stores for product
+    $('#product-details').on('click', '.find-stores', function(){
+        findStoresForProduct();
+    });
     
-    //On load: display section seasonal products
+    //If a store is clicked, update store map
+    $('#stores-data-container').on('click', 'li > *', function(event){
+        
+        //find longitude and latitude from hidden inputs
+        var longitude= $(this).siblings("input[name=longitude]").val();
+        var latitude=$(this).siblings("input[name=latitude]").val();
+        
+        generateStoreMap(longitude,latitude);
+  
+    });
+    
+
+});
+
+/** Landing page heading animations **/
+function showHeadingAnimations(){
+    $('.heading h1').addClass('animated fadeInDown');
+    $('.heading h2').addClass('animated fadeInUp');
+}
+
+/** Show list of Seasonal Products **/
+function showSeasonalProducts(query){
+    
     var query="&where_not=is_dead&order=released_on.desc";
     
-    my_lcbo.BeausSeasonalProducts(query,function(products){
+    lcbo.BeausSeasonalProducts(query,function(products){
 
       $.each(products,function(i,product){ //'i' is mandatory! 
 
@@ -30,20 +65,18 @@ $(document).ready(function(){
           );
       });
     });
+}
 
-        
-    $('.heading h1').addClass('animated fadeInDown');
-    $('.heading h2').addClass('animated fadeInUp');
+/** Show Details of Selected Product **/
+
+function showProductDetails(list_item){
     
-    
-    //Generate Product Details
-    $('.seasonal-list').on('click', 'li', function(){
-        
+        $('#stores-list').hide(); //hide stores for previously clicked on products
         $('#product-details').show(); //expand to show section
 
-        product_id = $(this).attr("id"); //grab id from 'li'
+        product_id = list_item.attr("id"); //update product id of active product
         
-        my_lcbo.getProduct(product_id,function(product){
+        lcbo.getProduct(product_id,function(product){
             
               //title and image
               //check if thumbnail exists, if not, replace with default image
@@ -110,14 +143,12 @@ $(document).ready(function(){
         $('html, body').animate({
             scrollTop: $("#product-details").offset().top-60
         }, 1000);
-    });
-    
+}
 
-    
-    //Find stores: if clicked, find stores
-    $('#product-details').on('click', '.find-stores', function(){
-        
-        $('#product-details').find('a').html("Searching...");
+/** Find Stores Selling Selected Product **/
+
+function findStoresForProduct(){
+     $('#product-details').find('a').html("Searching...");
         var current_product = new Product(product_id);
         
         $('#stores-list').show(); //show section to display our results
@@ -130,22 +161,7 @@ $(document).ready(function(){
         );
         
         current_product.findStores();
-  
-    });
-    
-    
-    //Generate store map
-    $('#stores-data-container').on('click', 'li > *', function(event){
-        
-        var longitude= $(this).siblings("input[name=longitude]").val();
-        var latitude=$(this).siblings("input[name=latitude]").val();
-        
-        generateStoreMap(longitude,latitude);
-  
-    });
-    
-
-});
+}
 
 /** Pagination **/
 
