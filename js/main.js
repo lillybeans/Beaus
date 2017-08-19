@@ -1,15 +1,47 @@
+/*** Load upon render ***/
+
 $(document).ready(function(){
+    
+    var product_id; //will store the id of the active product the user clicked on
+    
+    var my_lcbo = new LCBO();
+    
+    //On load: display section seasonal products
+    var query="&where_not=is_dead&order=released_on.desc";
+    
+    my_lcbo.BeausSeasonalProducts(query,function(products){
+
+      $.each(products,function(i,product){ //'i' is mandatory! 
+
+          //check if thumbnail exists, if not, replace with default image
+          var product_img="<div class='product-img'><img class='thumb' src="+product.image_thumb_url+"></div>";
+          if (product.image_thumb_url == null){
+              product_img="<div class='product-img'><img class='not-found' src=img/beer-not-found.png></div>";
+          }
+
+          //fill in the information about this product
+          $('.seasonal-list').append(
+              "<li id="+product.id+">"
+                +product_img+
+              "<p class='product-name''>"+product.name+"</p>"+
+              "<p class='volume'>"+product.volume_in_milliliters+" mL</p>"+
+              "<p class='price'>$"+parseFloat(product.price_in_cents/100).toFixed(2)+"</p>"+
+              "</li>"
+          );
+      });
+    });
+
+        
     $('.heading h1').addClass('animated fadeInDown');
     $('.heading h2').addClass('animated fadeInUp');
     
-    var product_id;
     
-    //Seasonal Beverages -  if clicked, go to product details
+    //Generate Product Details
     $('.seasonal-list').on('click', 'li', function(){
 
         product_id = $(this).attr("id"); //grab id from 'li'
         
-        LCBO.getProduct(product_id,function(product){
+        my_lcbo.getProduct(product_id,function(product){
             
               //title and image
               //check if thumbnail exists, if not, replace with default image
@@ -38,10 +70,10 @@ $(document).ready(function(){
               var find_stores;
               if(product.inventory_count > 0){
                   inventory_count="<img src=img/check.gif>In stock";
-                  find_stores="<a class='find-stores btn btn-full' href='#'>Find stores</a>";
+                  find_stores="<a class='find-stores btn btn-full' href=#product-details>Find stores</a>";
               }else{
                   inventory_count="<img src=img/cross.gif>Out of stock";
-                  find_stores="<a class='btn btn-faded' href='#'>Find stores</a>";
+                  find_stores="<a class='btn btn-faded' href=#product-details>Find stores</a>";
               }
             
 
@@ -78,53 +110,53 @@ $(document).ready(function(){
         }, 1000);
     });
     
-     function display_stores(inv_records){
-        var html="";
-        for(var i=0; i<inv_records.length; i++){
-            html+="<br>"+inv_records[i].name;
-            }
-            return html;
-     }
+
     
     //Find stores: if clicked, find stores
     $('#product-details').on('click', '.find-stores', function(){
-
-        Product.findStores(product_id,function(inventories){
-            
-            //for each store that the product can be found at
-            $.each(inventories,function(i,record){
-                
-                //fetch information of the store given store_id
-                Product.getStore(record.store_id,function(store){
-                    
-                    console.log("store id is: "+store.id);
-                    $(this).stores.push(store);
-                    
-                });
-            });
-            
-            alert("stores has length "+this.stores.length);
-            
-            //pagination
-            $('#stores-pagination-container').pagination({
-                dataSource: stores,
-                callback: function(stores_list, pagination) {
-                    var html = display_stores(stores_list);
-                    $('#stores-data-container').html(html);
-                }
-            });
-            
-            console.log(inventories.length);
-            $.each(inventories,function(i,record){ //'i' is mandatory
-
-                 console.log(record.product_id+","+record.store_id);
-            });
-        });
         
-        //smooth scroll to stores
-        $('html, body').animate({
-            scrollTop: $("#stores-list").offset().top
-        }, 1000);
+        $('#product-details').find('a').html("Searching...");
+        var current_product = new Product(product_id);
+        
+        current_product.findStores();
+  
     });
     
 });
+
+/*** Helper functions: Pagination using Pagination.js ***/
+
+function paginateStores(stores){ //triggered after async call "getStore" is complete
+
+    $('#product-details').find('a').html("Find stores"); //change button text back
+    
+    //pagination
+    $('#stores-pagination-container').pagination({
+        dataSource: stores,
+        callback: function(stores_list, pagination) {
+            var html = display_stores(stores_list);
+            $('#stores-data-container').html(html);
+        }
+    });
+
+    //smooth scroll to stores
+    $('html, body').animate({
+        scrollTop: $("#stores-list").offset().top
+    }, 1000);
+}
+
+function display_stores(stores){
+    var html="<ul>";
+    for(var i=0; i<stores.length; i++){
+        html+="<li><p class='store-name'>"+stores[i].name+"</p>"+
+                "<img class='store' src=img/store.jpg>"+
+                "<p>"+stores[i].city+"</p>"+
+                "<p>"+stores[i].address_line_1+"</p>"+
+                "<p>"+stores[i].postal_code+"</p>"+
+                "<p>"+stores[i].telephone+"</p>"+
+              "</li>";
+    }
+    
+    html+="</ul>"
+    return html;
+ }

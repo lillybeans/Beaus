@@ -1,4 +1,22 @@
-var LCBO = new function() {
+//LCBO API: General Get Function
+function get(url, callback) {
+  $.ajax({
+    url: 'http://lcboapi.com' + url,
+    dataType: 'jsonp',
+    success: function(data) {
+      if (200 == data.status) {
+        callback(data.result);
+          //console.log(data.result);
+      } else {
+        alert('There was an error [' + data.status + ']: ' + data.message);
+      }
+    }
+  });
+}
+
+
+
+var LCBO = function() {
     
         this.BeausAllProducts=function(callback){
             get("/products?q=Beaus&per_page=50", callback);
@@ -16,80 +34,49 @@ var LCBO = new function() {
           get('/stores/' + id, callback);
         };
     
-
-    
-    
-        function get(url, callback) {
-          $.ajax({
-            url: 'http://lcboapi.com' + url,
-            dataType: 'jsonp',
-            success: function(data) {
-              if (200 == data.status) {
-                callback(data.result);
-                  console.log(data.result);
-              } else {
-                alert('There was an error [' + data.status + ']: ' + data.message);
-              }
-            }
-          });
-        }
       };
 
-var Product=new function() {
+ 
+
+var Product=function(pID) {
     
-        this.stores=[];
+        this.product_id = pID;
     
-        this.findStores = function(product_id, callback) {
-          get('/inventories?product_id=' + product_id, callback);
+        function getStore(id, callback){
+            get('/stores/' + id, callback);
+        }
+
+        this.findStores = function() {
+            
+            var stores=[];
+            
+            get('/inventories?product_id=' + this.product_id, function(inventories){
+                
+                //for each store that the product can be found at
+                $.each(inventories,function(i,record){
+                    
+                    var store_count=inventories.length; //for checking if async call is complete
+
+                    //fetch information of the store given store_id
+                    getStore(record.store_id,function(store){
+                        
+                        stores.push(store); //array accumulation, must wait for async call or else array will be empty!
+                        
+                        //once async call has finished 
+                        if(stores.length == store_count){
+                            paginateStores(stores);
+                        }
+
+                    });
+                });
+        
+            });
         };
     
         this.getStore = function(id, callback) {
           get('/stores/' + id, callback);
         };
     
-        function get(url, callback) {
-          $.ajax({
-            url: 'http://lcboapi.com' + url,
-            dataType: 'jsonp',
-            success: function(data) {
-              if (200 == data.status) {
-                callback(data.result);
-                  console.log(data.result);
-              } else {
-                alert('There was an error [' + data.status + ']: ' + data.message);
-              }
-            }
-          });
-        }
-    
 };
-     
-      $(function() {
-        
-        //On load: display section seasonal products
-        var query="&where_not=is_dead&order=released_on.desc";
-        
-          LCBO.BeausSeasonalProducts(query,function(products){
-              
-              $.each(products,function(i,product){ //'i' is mandatory! 
-                  
-                  //check if thumbnail exists, if not, replace with default image
-                  var product_img="<div class='product-img'><img class='thumb' src="+product.image_thumb_url+"></div>";
-                  if (product.image_thumb_url == null){
-                      product_img="<div class='product-img'><img class='not-found' src=img/beer-not-found.png></div>";
-                  }
-                  
-                  //fill in the information about this product
-                  $('.seasonal-list').append(
-                      "<li id="+product.id+">"
-                        +product_img+
-                      "<p class='product-name''>"+product.name+"</p>"+
-                      "<p class='volume'>"+product.volume_in_milliliters+" mL</p>"+
-                      "<p class='price'>$"+parseFloat(product.price_in_cents/100).toFixed(2)+"</p>"+
-                      "</li>"
-                  );
-		      });
-              
-          });
-          
-      });
+
+

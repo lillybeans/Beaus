@@ -33,6 +33,10 @@ section{
     padding: 0px 5%; /* tb:0 lr:5% */
 }
 
+ul, li{
+    list-style:none;
+}
+
 h1{
     font-family:'Abril Fatface',cursive;
     font-weight:400;
@@ -294,8 +298,11 @@ p.product-name{ /*product title*/
     width:40%;
 }
 
-.col a{
+#product-details a{
     position:relative;
+    width:30%;
+    display:inline-block;
+    margin:20px 20px;
 }
 
 td.stock-status{
@@ -311,5 +318,57 @@ td.stock-status{
 }
 
 /*------------------------------------------*/
-/* Animations using Animate.css */
+/* Stores List & Pagination */
 /*------------------------------------------*/
+
+#stores-list .row{
+    text-align:center;
+    width:100vw;
+}
+
+#stores-data-container{
+    width:100%;
+    margin:auto;
+    text-align:center;
+}
+
+#stores-data-container ul{
+    width:100%;
+    margin:auto;
+    padding:0;
+}
+#stores-data-container li{
+    display:inline-block;
+    width:19%;
+    min-height:290px;
+    vertical-align:top;
+    text-align:left;
+    margin:0.5%;
+    padding:0.5%;
+    background-color:#fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    
+}
+
+#stores-data-container li p{
+    margin-top:5px;
+    margin-bottom:0px;
+}
+
+#stores-data-container li p.store-name{
+    font-weight:700;
+    margin-top:0px;
+    margin-bottom:5px;
+    min-height:35px;
+}
+
+#stores-pagination-container{
+    margin-top:20px;
+    margin-left:5px;
+}
+
+img.store{
+    height:auto;
+    width:100%;
+}
