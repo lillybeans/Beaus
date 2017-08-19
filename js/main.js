@@ -6,7 +6,7 @@ var product_id; //id of current product in product details
 
 $(document).ready(function(){
     
-    showHeadingAnimations();
+    createAnimations();
     showSeasonalProducts();
         
     //If user clicks a product in the Seasonal Products list, generate product details
@@ -21,7 +21,7 @@ $(document).ready(function(){
     
     //If user wants to go back to seasonal beverages, redirect
     $('#product-details').on('click','.to-seasonal',function(){
-        scrollTo("#seasonal-beverages");
+        scrollTo("#seasonal-beverages",30);
     });
     
     //If a store is clicked, update store map
@@ -41,9 +41,22 @@ $(document).ready(function(){
 });
 
 /** Landing page heading animations **/
-function showHeadingAnimations(){
+function createAnimations(){
+    
+    //heading animations
     $('.heading h1').addClass('animated fadeInDown');
     $('.heading h2').addClass('animated fadeInUp');
+    
+        
+    $('#seasonal-beverages').waypoint(function(direction){
+        $('#seasonal-beverages').addClass('animated fadeIn');
+        $('h1').addClass('animated fadeInDown');
+        $('li').each(function(){
+            $(this).addClass('animated fadeIn');
+        });
+    },{offset:'50%'
+    });
+    
 }
 
 /** Show list of Seasonal Products **/
@@ -145,7 +158,7 @@ function showProductDetails(list_item){
               
           });
         
-        scrollTo("#product-details");
+        scrollTo("#product-details",30);
 }
 
 /** Find Stores Selling Selected Product **/
@@ -181,7 +194,7 @@ function paginateStores(stores){ //triggered after async call "getStore" is comp
         }
     });
 
-    scrollTo('#stores-list');
+    scrollTo('#stores-list',-20);
 }
 
 function display_stores(stores){
@@ -225,8 +238,8 @@ function generateStoreMap(longitude, latitude){
 }
 
 /** Smooth scroll **/
-function scrollTo(id){
+function scrollTo(id, offset){
     $('html, body').animate({
-        scrollTop: $(id).offset().top-30
+        scrollTop: $(id).offset().top-offset
     }, 1000);
 }

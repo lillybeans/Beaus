@@ -414,3 +414,22 @@ img.store{
     position: relative; /* for z-index to work */
     z-index: 0; /* so below form */
 }
+
+
+/*------------------------------------------*/
+/* Animations */
+/*------------------------------------------*/
+
+/* child elements will automatically inherit the animation behaviour parents */
+
+/* fade effects: starts invisible */
+#seasonal-beverages{
+    opacity:0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+/* fade effects: becomes visible */
+#seasonal-beverages.animated{
+    opacity:1;
+}
