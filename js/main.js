@@ -124,7 +124,7 @@ $(document).ready(function(){
         
         //get product name of currently showcased product
         var product_name=$('#product-details .product-name').html();
-        
+ 
         $('#stores-list-heading').html(
             "<h1>Where to buy <span class='product-name'>"+product_name+"</span></h1>"
         );

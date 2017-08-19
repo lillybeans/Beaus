@@ -45,6 +45,10 @@ var Product=function(pID) {
         function getStore(id, callback){
             get('/stores/' + id, callback);
         }
+    
+        this.getProduct = function(callback) {
+          get('/products/' + this.product_id, callback);
+        }
 
         this.findStores = function() {
             
