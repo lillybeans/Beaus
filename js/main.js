@@ -227,6 +227,6 @@ function generateStoreMap(longitude, latitude){
 /** Smooth scroll **/
 function scrollTo(id){
     $('html, body').animate({
-        scrollTop: $(id).offset().top-60
+        scrollTop: $(id).offset().top-30
     }, 1000);
 }
