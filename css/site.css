@@ -56,7 +56,6 @@ a.btn:visited{ /* so that both link and visited look the same */
     padding:10px 30px; /* t/b:10, l/r:30 */
     font-weight: 300;
     text-decoration: none; /* get rid of underline */
-    border-radius: 200px;
     -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
     transition: background-color 0.2s, border 0.2s, color 0.2s; 
     color: #fff; /* font color */
@@ -93,7 +92,7 @@ a.btn:visited{ /* so that both link and visited look the same */
 .divider:after{
     display: block;
     height:0.5px;
-    background-color: #522c1c;
+    background-color: #c5a077;
     content: " "; /* must specify content, just put empty as placeholder*/
     width: auto;
     margin: 0 auto; /* tb:0, lr: auto */
@@ -298,13 +297,6 @@ p.product-name{ /*product title*/
     width:40%;
 }
 
-#product-details a{
-    position:relative;
-    width:30%;
-    display:inline-block;
-    margin:20px 20px;
-}
-
 td.stock-status{
     padding-top:10px;
     vertical-align:bottom;
@@ -318,7 +310,7 @@ td.stock-status{
 }
 
 /*------------------------------------------*/
-/* Stores List & Pagination */
+/* Section 3 - Stores List & Pagination */
 /*------------------------------------------*/
 
 #stores-list .row{
@@ -327,25 +319,29 @@ td.stock-status{
 }
 
 #stores-data-container{
-    width:100%;
+    width:50%;
     margin:auto;
     text-align:center;
+    display:inline-block;
+    float:left;
 }
 
 #stores-data-container ul{
     width:100%;
     margin:auto;
     padding:0;
+    height:550px;
+    overflow:auto;
+    text-align:left;
 }
 #stores-data-container li{
     display:inline-block;
-    width:19%;
+    width:47%;
     min-height:290px;
     vertical-align:top;
     text-align:left;
-    margin:0.5%;
+    margin:1.0% 0.5%;
     padding:0.5%;
-    background-color:#fff;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     
@@ -356,11 +352,12 @@ td.stock-status{
     margin-bottom:0px;
 }
 
-#stores-data-container li p.store-name{
-    font-weight:700;
-    margin-top:0px;
-    margin-bottom:5px;
+#stores-data-container li p.store-name span{
+    margin-top:5px;
+    line-height:25px;
     min-height:35px;
+    border-bottom: 2px solid #c5a077;
+    font-weight: 600;
 }
 
 #stores-pagination-container{
@@ -371,4 +368,13 @@ td.stock-status{
 img.store{
     height:auto;
     width:100%;
+}
+
+
+#map{ /* gmaps */
+    display:inline-block;
+    width: 48%;
+    height: 550px;
+    position: relative; /* for z-index to work */
+    z-index: 0; /* so below form */
 }

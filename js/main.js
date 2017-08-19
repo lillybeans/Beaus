@@ -122,9 +122,21 @@ $(document).ready(function(){
   
     });
     
+    
+    //Generate store map
+    $('#stores-data-container').on('click', 'li > *', function(event){
+        
+        var longitude= $(this).siblings("input[name=longitude]").val();
+        var latitude=$(this).siblings("input[name=latitude]").val();
+        
+        generateStoreMap(longitude,latitude);
+  
+    });
+    
+
 });
 
-/*** Helper functions: Pagination using Pagination.js ***/
+/** Pagination **/
 
 function paginateStores(stores){ //triggered after async call "getStore" is complete
 
@@ -148,15 +160,39 @@ function paginateStores(stores){ //triggered after async call "getStore" is comp
 function display_stores(stores){
     var html="<ul>";
     for(var i=0; i<stores.length; i++){
-        html+="<li><p class='store-name'>"+stores[i].name+"</p>"+
+        html+="<li>"+
                 "<img class='store' src=img/store.jpg>"+
+                "<p class='store-name'><span>"+stores[i].name+"</span></p>"+
                 "<p>"+stores[i].city+"</p>"+
                 "<p>"+stores[i].address_line_1+"</p>"+
                 "<p>"+stores[i].postal_code+"</p>"+
                 "<p>"+stores[i].telephone+"</p>"+
+                "<input type='hidden' name='longitude' value="+stores[i].longitude+">"+
+                "<input type='hidden' name='latitude' value="+stores[i].latitude+">"+
               "</li>";
     }
     
-    html+="</ul>"
+    html+="</ul>";
+    
+    generateStoreMap(stores[0].longitude,stores[0].latitude);
+    
     return html;
  }
+
+/** GMaps **/
+ 
+function generateStoreMap(longitude, latitude){
+
+    var map=new GMaps({
+        div: '#map',
+        lat: latitude,
+        lng: longitude, //shift it so marker shows 
+        zoom: 14 /* initial: 15, lower = more zoomed out */
+    });
+
+    map.addMarker({
+      lat: latitude,
+      lng: longitude,
+      title: 'Store Location'
+    });
+}
