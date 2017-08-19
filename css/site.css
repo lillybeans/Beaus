@@ -58,14 +58,19 @@ a.btn:visited{ /* so that both link and visited look the same */
     text-decoration: none; /* get rid of underline */
     -webkit-transition: background-color 0.2s, border 0.2s, color 0.2s;
     transition: background-color 0.2s, border 0.2s, color 0.2s; 
-    color: #fff; /* font color */
     margin-right: 15px; /* to space out buttons a lil */
-    margin:40px 0;
+    margin:20px 0;
 }
 
 .btn-full{
     background-color: #522c1c;
+    color:#fff;
     border: 1px solid #522c1c; /* so same size as ghost */
+}
+
+.btn-ghost{
+    border: 1px solid #522c1c;
+    color: #2f2a2b;
 }
 
 .btn-faded{
@@ -77,6 +82,11 @@ a.btn:visited{ /* so that both link and visited look the same */
 .btn-full:active{
     background-color: #c5a077; /* darker */
     border: 1px solid #c5a077; /* border must be darker too */
+}
+
+.btn-ghost:hover,
+.btn-ghost:active{
+    background-color: #c5a077; /* darker */
 }
 
 /*clear float after element */
@@ -150,7 +160,7 @@ header{
 /*------------------------------------------*/
 /* Section 1 - Seasonal Beverages */
 /*------------------------------------------*/
-.seasonal-beverages{
+#seasonal-beverages{
     width:100%
 }
 

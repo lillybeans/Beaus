@@ -19,6 +19,11 @@ $(document).ready(function(){
         findStoresForProduct();
     });
     
+    //If user wants to go back to seasonal beverages, redirect
+    $('#product-details').on('click','.to-seasonal',function(){
+        scrollTo("#seasonal-beverages");
+    });
+    
     //If a store is clicked, update store map
     $('#stores-data-container').on('click', 'li > *', function(event){
         
@@ -30,6 +35,8 @@ $(document).ready(function(){
   
     });
     
+
+
 
 });
 
@@ -78,36 +85,34 @@ function showProductDetails(list_item){
         
         lcbo.getProduct(product_id,function(product){
             
-              //title and image
-              //check if thumbnail exists, if not, replace with default image
+              //check for invalid fields and replace with default
               var product_image="<img src="+product.image_url+">";
 
               if (product.image_url == null){
                   product_image="<img class='not-found' src=img/beer-not-found.png>";
               }
             
-              var style=product.style;
               if(product.style==null){
-                  style="Unknown";
+                  product.style="Unknown";
               }
-            
-              var released_on = product.released_on;
+
               if(product.released_on == null){
-                  released_on="Unknown";
+                  product.released_on="Unknown";
               }
               
-              var serving_suggestion = product.serving_suggestion;
               if(product.serving_suggestion==null){
-                  serving_suggestion="Just another really tasty beer!";
+                  product.serving_suggestion="Just another really tasty beer!";
               }
             
-              var inventory_count;
+              var stock_status;
+            
               var find_stores;
+            
               if(product.inventory_count > 0){
-                  inventory_count="<img src=img/check.gif>In stock";
+                  stock_status="<img src=img/check.gif>In stock";
                   find_stores="<a class='find-stores btn btn-full' href=#product-details>Find stores</a>";
               }else{
-                  inventory_count="<img src=img/cross.gif>Out of stock";
+                  stock_status="<img src=img/cross.gif>Out of stock";
                   find_stores="<a class='btn btn-faded' href=#product-details>Find stores</a>";
               }
             
@@ -122,16 +127,17 @@ function showProductDetails(list_item){
                       "<table class='info'>"+
 
                           "<tr><td class='price'> $"+(product.price_in_cents/100).toFixed(2)+"</td>"+
-                          "<td class='stock-status'>"+inventory_count+"</td></tr>"+
+                          "<td class='stock-status'>"+stock_status+"</td></tr>"+
 
                           "<tr><td>Category </td><td>"+product.primary_category+" - "+product.secondary_category+"</td></tr>"+
-                          "<tr><td>Style </td><td>"+style+"</td></tr>"+
+                          "<tr><td>Style </td><td>"+product.style+"</td></tr>"+
                           "<tr><td>Origin </td><td>"+product.origin+"</td></tr>"+
                           "<tr><td>Producer </td><td>"+product.producer_name+"</td></tr>"+
-                          "<tr><td>Released </td><td>"+released_on+"</td></tr>"+
-                          "<tr class><td>Suggestion </td><td>"+serving_suggestion+"</td></tr>"+
+                          "<tr><td>Released </td><td>"+product.released_on+"</td></tr>"+
+                          "<tr class><td>Suggestion </td><td>"+product.serving_suggestion+"</td></tr>"+
                       "</table>"+
                     find_stores+
+                    "<a class='to-seasonal btn btn-ghost' href=#product-details>See Other Seasonal Beverages</a>"+
                     "</div>"+
                   "</div>"
 
@@ -139,16 +145,13 @@ function showProductDetails(list_item){
               
           });
         
-        //smooth scroll
-        $('html, body').animate({
-            scrollTop: $("#product-details").offset().top-60
-        }, 1000);
+        scrollTo("#product-details");
 }
 
 /** Find Stores Selling Selected Product **/
 
 function findStoresForProduct(){
-     $('#product-details').find('a').html("Searching...");
+     $('#product-details').find('.find-stores').html("Searching...");
         var current_product = new Product(product_id);
         
         $('#stores-list').show(); //show section to display our results
@@ -167,7 +170,7 @@ function findStoresForProduct(){
 
 function paginateStores(stores){ //triggered after async call "getStore" is complete
     
-    $('#product-details').find('a').html("Find stores"); //change button text back
+    $('#product-details').find('.find-stores').html("Find stores"); //change button text back
     
     //pagination
     $('#stores-pagination-container').pagination({
@@ -178,10 +181,7 @@ function paginateStores(stores){ //triggered after async call "getStore" is comp
         }
     });
 
-    //smooth scroll to stores
-    $('html, body').animate({
-        scrollTop: $("#stores-list").offset().top
-    }, 1000);
+    scrollTo('#stores-list');
 }
 
 function display_stores(stores){
@@ -222,4 +222,11 @@ function generateStoreMap(longitude, latitude){
       lng: longitude,
       title: 'Store Location'
     });
+}
+
+/** Smooth scroll **/
+function scrollTo(id){
+    $('html, body').animate({
+        scrollTop: $(id).offset().top-60
+    }, 1000);
 }
