@@ -165,7 +165,7 @@ function showProductDetails(list_item){
               
           });
         
-        scrollTo("#product-details",0);
+        scrollTo("#product-details",-30);
 }
 
 /** Find Stores Selling Selected Product **/
@@ -201,7 +201,7 @@ function paginateStores(stores){ //triggered after async call "getStore" is comp
         }
     });
 
-    scrollTo('#stores-list',-20);
+    scrollTo('#stores-list',-60);
 }
 
 function display_stores(stores){

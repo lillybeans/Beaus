@@ -1,0 +1,34 @@
+/* Big tablet and up: 1024px to 1200px (widths smaller than 1140px row) */
+@media only screen and (max-width: 1200px){
+}
+
+/* Small tablet to big tablets: from 768 to 1023px */
+@media only screen and (max-width: 1023px){
+    body { 
+        font-size: 14px; /* all font sizes will scale since we defined them in % */
+    }
+    
+    #seasonal-beverages li{
+        width:30%;
+    }
+    
+    .heading h1{
+        font-size:400%;
+        margin-bottom: 60px;
+    }
+    
+    #summer .heading h1{
+        font-size:350%;
+        margin-bottom:50px;
+        
+    }
+    
+    .heading h2{
+        font-size:150%;
+    }
+    
+    #product-details .col:first-child{
+        display:none;
+    }
+    
+}

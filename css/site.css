@@ -7,11 +7,6 @@
 * torquoise: #a6babc
 */
 
-*{
-    padding:0px;
-    margin:0px;
-
-}
 html, body{
     color: #2f2a2b; /* font color */
     font-family:'Open Sans','Arial',sans-serif; /* if not Open Sans, use Arial */
@@ -26,7 +21,8 @@ html, body{
 
 section{
     background-color:#f4f4f4;
-    border-color:red;
+    padding-top:60px;
+    padding-bottom:60px;
 }
 
 .row {
@@ -80,7 +76,7 @@ a.btn-ghost:link,
 a.btn-ghost:visited,
 .btn-ghost{
     border: 1px solid #522c1c;
-    color: #2f2a2b;
+    color: #522c1c;
 }
 
 a.btn-ghost:hover,
@@ -107,7 +103,7 @@ a.btn-ghost:active{
 
 .divider:after{
     display: block;
-    height:0.5px;
+    height:1px;
     background-color: #c5a077;
     content: " "; /* must specify content, just put empty as placeholder*/
     width: auto;
@@ -168,12 +164,12 @@ header{
 /*------------------------------------------*/
 
 section#summer{
+    background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(180, 159, 88, 0.69)),to(rgba(0, 0, 0, 0))),url(../img/summer2.jpg);
     background-image: linear-gradient(rgba(180, 159, 88, 0.69),rgba(0, 0, 0, 0)),url(../img/summer2.jpg);
     background-size:cover;
     background-position:right;
     background-attachment: fixed;
     height:100vh;
-    padding:0px;
     margin:0px;
 }
 
@@ -181,11 +177,11 @@ section .row{
     position:relative;
     top:35%;
     width:100%;
+    padding:0px;
 }
 
 section .heading{
     position:relative;
-    top:0%;
     left:15%;
     width:70%;
     text-align:left;
@@ -193,7 +189,8 @@ section .heading{
     margin-top:0px;
     padding:30px;
     border:5px solid #ede3d5;
-
+    -webkit-box-sizing: border-box;    
+    box-sizing: border-box;
 }
 
 section .heading h1{
@@ -288,8 +285,6 @@ section#product-details{
     background-image: linear-gradient(rgba(255, 255, 255, 0.4),rgba(255, 255, 255, 0.4)),url(../img/beerpack.jpg);
     background-position:right;
     background-attachment: fixed;
-    height:100vh;
-    padding-bottom:0px;
 }
 
 #product-details .row{
@@ -317,7 +312,6 @@ section#product-details{
 
 
 #product-details .col:first-child{
-    width:55%;
     border-right:1px #c5a077;
     overflow:hidden;
     margin-top:0px;
@@ -336,8 +330,8 @@ section#product-details{
 }
 
 #product-details .product-img img{
-    width:130%;
     height:100%;
+    width:130%;
     opacity:0.9;
     margin:0px;
 }
@@ -351,6 +345,7 @@ section#product-details{
     width:400px;
     margin-left:10px;
 }
+
 
 .col:last-child{
     -webkit-box-sizing: border-box;
@@ -391,7 +386,6 @@ td.stock-status{
 
 section#stores-list{
     display:none;
-    margin-bottom:80px;
 }
 
 #stores-list-heading .product-name{
