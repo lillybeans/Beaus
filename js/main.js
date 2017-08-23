@@ -21,7 +21,7 @@ $(document).ready(function(){
     
     //If user wants to go back to seasonal beverages, redirect
     $('#product-details').on('click','.to-seasonal',function(){
-        scrollTo("#seasonal-beverages",30);
+        scrollTo("#seasonal-beverages",0);
     });
     
     //If a store is clicked, update store map
@@ -44,10 +44,16 @@ $(document).ready(function(){
 function createAnimations(){
     
     //heading animations
-    $('.heading h1').addClass('animated fadeInDown');
-    $('.heading h2').addClass('animated fadeInUp');
+    $('header .heading h1').addClass('animated fadeInDown');
+    $('header .heading h2').addClass('animated fadeInUp');
     
-        
+    $('#summer').waypoint(function(direction){
+  
+        $('#summer .heading h1').addClass('animated fadeInDown');
+        $('#summer .heading h2').addClass('animated fadeInUp');
+        },{offset:'20%'
+    });
+    
     $('#seasonal-beverages').waypoint(function(direction){
         $('#seasonal-beverages').addClass('animated fadeIn');
         $('h1').addClass('animated fadeInDown');
@@ -158,7 +164,7 @@ function showProductDetails(list_item){
               
           });
         
-        scrollTo("#product-details",30);
+        scrollTo("#product-details",0);
 }
 
 /** Find Stores Selling Selected Product **/
