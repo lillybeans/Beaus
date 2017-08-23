@@ -191,6 +191,8 @@ section .heading{
     text-align:left;
     vertical-align:middle;
     margin-top:0px;
+    padding:30px;
+    border:5px solid #ede3d5;
 
 }
 
