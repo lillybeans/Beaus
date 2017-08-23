@@ -494,3 +494,14 @@ img.store{
 #summer .heading h2.animated{
     opacity:1;
 }
+
+
+#summer .heading{
+    opacity:0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+#summer .heading.animated{
+    opacity:1;
+}

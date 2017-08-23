@@ -49,6 +49,7 @@ function createAnimations(){
     
     $('#summer').waypoint(function(direction){
   
+        $('#summer .heading').addClass('animated fadeIn');
         $('#summer .heading h1').addClass('animated fadeInDown');
         $('#summer .heading h2').addClass('animated fadeInUp');
         },{offset:'20%'
@@ -60,7 +61,7 @@ function createAnimations(){
         $('li').each(function(){
             $(this).addClass('animated fadeIn');
         });
-    },{offset:'50%'
+    },{offset:'60%'
     });
     
 }
