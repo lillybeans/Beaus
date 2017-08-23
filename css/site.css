@@ -130,15 +130,18 @@ header{
     position:absolute;
     top:5%;
     right:10%;
-    auto;
 }
 
 .heading{
     position: absolute; /* only way to vertically and horizontally center*/
-    width:1140px;
-    bottom: 40%;
-    right: 10%;
     text-align:right;
+    width:100%;
+    top: 50%;
+    padding-right:10%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%); /* to center */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .heading h1{
@@ -173,27 +176,27 @@ section#summer{
     margin:0px;
 }
 
-section .row{
+#summer .row{
     position:relative;
-    top:35%;
     width:100%;
+    height:inherit;
     padding:0px;
 }
 
-section .heading{
+#summer .heading{
     position:relative;
+    width:70%; /*l:15%, width:70%, r:15%*/
     left:15%;
-    width:70%;
     text-align:left;
-    vertical-align:middle;
-    margin-top:0px;
     padding:30px;
     border:5px solid #ede3d5;
-    -webkit-box-sizing: border-box;    
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%); /* to center */
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-section .heading h1{
+#summer .heading h1{
     margin-top:0px;
     font-size:520%;
 }
@@ -203,6 +206,11 @@ section .heading h1{
 /*------------------------------------------*/
 #seasonal-beverages{
     width:100%;
+    text-align:center;
+}
+
+#seasonal-beverages h1{
+    text-align:left;
 }
 
 .seasonal-list{ /* ul */
@@ -283,6 +291,7 @@ p.product-name{ /*product title*/
 
 section#product-details{
     display:none;
+    background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(255, 255, 255, 0.4)),to(rgba(255, 255, 255, 0.4))),url(../img/beerpack.jpg);
     background-image: linear-gradient(rgba(255, 255, 255, 0.4),rgba(255, 255, 255, 0.4)),url(../img/beerpack.jpg);
     background-position:right;
     background-attachment: fixed;
