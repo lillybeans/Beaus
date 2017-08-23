@@ -165,7 +165,7 @@ function showProductDetails(list_item){
               
           });
         
-        scrollTo("#product-details",-30);
+        scrollTo("#product-details",0);
 }
 
 /** Find Stores Selling Selected Product **/

@@ -295,6 +295,7 @@ section#product-details{
     background-image: linear-gradient(rgba(255, 255, 255, 0.4),rgba(255, 255, 255, 0.4)),url(../img/beerpack.jpg);
     background-position:right;
     background-attachment: fixed;
+    height:100vh;
 }
 
 #product-details .row{
